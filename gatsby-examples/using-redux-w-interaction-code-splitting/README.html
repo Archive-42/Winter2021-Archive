@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="gatsby-redux-lazy-loading">Gatsby Redux Lazy Loading</h1>
+<h2 id="goal">Goal</h2>
+<p>The goal is to show a pattern of <em>not</em> just loading a slice of a Redux store when a component mounts, but <em>when the user interacts with the site</em>. In this case, there is an expensive reducer that:</p>
+<ul>
+<li>has a large 3rd party dependency</li>
+<li>imports a large JSON file and sets it in the store</li>
+</ul>
+<p>This is very useful for parts of the store that are:</p>
+<ul>
+<li>not present on every page</li>
+<li>not present on a page without a certain user action</li>
+</ul>
+<p>For less expensive slices of the store, this pattern may be overkill, but for expensive parts it is worth it.</p>
+<h2 id="why">Why</h2>
+<p>The reason we have to be especially “careful” with Redux with Gatsby is that Gatsby’s default code-splitting will be looking for code that is unique to a certain page and bundle it up, but if it sees code across more than one page, it will end up in the <code>app</code> or <code>commons</code> bundle and be loaded on every page, whether it is used or not. In this example the large 3rd party dependency and large array of dummy data would otherwise be loaded on every page, over 400kb! <a href="https://benrobertson.io/notes/gatsby-and-bundle-chunking">See this article by Ben Robertson on Gatsby code splitting</a>.</p>
+<h2 id="pattern">Pattern</h2>
+<p>The app works based on the <a href="https://nicolasgallagher.com/redux-modules-and-code-splitting/">implementation of the Redux Modules or Reducer Registry pattern found here</a> by Nicholas Gallagher.</p>
+<h2 id="running-locally">Running Locally</h2>
+<pre class="shell"><code>cd examples/using-redux-w-interaction-code-splitting
+npm install
+npm run start</code></pre>
+<h2 id="live-demo">Live demo</h2>
+<p><a href="https://gatsbyreduxcodesplittingexampl.gtsb.io">gatsbyreduxcodesplittingexampl.gtsb.io</a></p>
+</body>
+</html>

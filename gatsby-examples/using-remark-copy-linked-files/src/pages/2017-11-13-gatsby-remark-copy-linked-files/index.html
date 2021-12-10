@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Using gatsby-remark-copy-linked-files</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Using gatsby-remark-copy-linked-files</h1>
+<p class="date">2017-11-13T10:19:45.267Z</p>
+</header>
+<p>Plugin documentation: <a href="https://www.gatsbyjs.com/plugins/gatsby-remark-copy-linked-files/">gatsby-remark-copy-linked-files</a>–<em>“Copies local files linked to/from markdown to your <code>public</code> folder.”</em></p>
+<p>HTML small test (see the <a href="https://github.com/gatsbyjs/gatsby/issues/2696">gatsby/#2696</a>–<em>“[gatsby-transformer-remark] Content of inline HTML tags from markdown source is outside of tags in HTML output.”</em>):</p>
+<p><small class="caption"><em>This is a <code>&lt;small&gt;</code> HTML tag with some Markdown formatting and inline code and CSS class of <code>caption</code>. Styles for the latter are defined in <code>utils/typography.js</code>.</em></small></p>
+<h2 id="images">Images</h2>
+<p>A Markdown image tag:</p>
+<figure>
+<img src="./alex-holyoake-388536.jpg" alt="Markdown image tag" /><figcaption aria-hidden="true">Markdown image tag</figcaption>
+</figure>
+<p>The HTML equivalent, with some inline <code>style</code>:</p>
+<p><img src="./alex-holyoake-388536.jpg" alt="HTML image tag" style="float:none;height: auto;width: auto"></p>
+<p><small class="caption"><em>Two HTML image tags with inline styles in two Markdown paragraphs, image width set to <code>160px</code> and <code>280px</code> via inline <code>style</code>:</em></small></p>
+<p><img src="./alex-holyoake- 388538.jpg" style="width: 280px; float: left; margin: 0 1.8rem 1.8rem 0;"> We interrupt this program to annoy you and make things generally irritating. I cut down trees, I skip and jump, I like to press wildflowers, image #1 should be floating <code>left</code>.</p>
+<p>Hegel is arguing that the reality is merely an a priori adjunct of non-naturalistic ethics, Kant via the categorical imperative is holding that ontologically it exists only in the imagination, and Marx claims it was offside.</p>
+<h3 id="markdown-headline-h3">Markdown Headline <code>&lt;h3&gt;</code></h3>
+<p><img src="./alex-holyoake-327106.jpg" style="width: 160px; float: right; margin: 0 0 1.8rem 1.8rem;"> And whereas in most professions these would be considerable drawbacks, in chartered accountancy, they’re a positive boon. Image #2 should be floating <code>right</code>. We’re not cheap–here’s a HTML href <a href="http://example.com/">example.com</a> on top!</p>
+<p><strong>Paragraph tags with Markdown content</strong> with two HTML images inline, running across multiple lines: <img src="./alex-holyoake-340782.jpg" alt="inline image" /></p>
+<p>
+HTML Paragraph with two inline images: <img src="./jakob-owens-262566.jpg"> and another one: <img src="./alex-holyoake-327106.jpg">
+</p>
+<h2 id="links">Links</h2>
+<p>A HTML href on a single line:</p>
+<p><a href="Creativecommons-informational-flyer_eng.pdf">Download PDF</a></p>
+<p>HTML paragraph with text and HTML href inside:</p>
+<p>
+Lorem ipsum <a href="Creativecommons-informational-flyer_eng.pdf">Download PDF</a>
+</p>
+<p>A HTML href on three lines – opening tag, inline text, closing tag:</p>
+<p><a href="Creativecommons-informational-flyer_eng.pdf"> Download PDF </a></p>
+<p>Paragraph in regular Markdown and HTML href: <a href="Creativecommons-informational-flyer_eng.pdf">Download PDF</a></p>
+<p>Paragraph in regular Markdown and Markdown href: <a href="Creativecommons-informational-flyer_eng.pdf">Download PDF</a></p>
+<h2 id="fails-wins">Fails &amp; Wins</h2>
+<p><small class="caption"><em><span class="win">Wins</span> are easily recognizable by either an image or a video being displayed–<span class="fail">Fails</span> are marked.</em></small></p>
+<h3 id="markdown-images-containing-a-space">Markdown Images containing a space</h3>
+<!-- if the image name contains a space, markdown images wont be copied -->
+<p>Here’s a <span class="fail">Markdown image with space in filename</span>:</p>
+<p><img src="./alex-holyoake-%20388538.jpg" /></p>
+<p>But: <span class="win">HTML image</span> with space in filename:</p>
+<p><img src="./alex-holyoake- 388538.jpg"></p>
+<h3 id="embedding-video">Embedding Video</h3>
+<p>HTML video tag with <code>source</code> and a fallback paragraph, <span class="win">multiple lines</span>:</p>
+<video controls="controls" autoplay="true" loop="true">
+<source type="video/mp4" src="gatsbygram.mp4">
+</source>
+<p>
+Your browser does not support the video element.
+</p>
+</video>
+<p>However doing the same in just one line of HTML fails–<br />
+Video, <span class="fail">single line</span>:</p>
+<video controls="controls" autoplay="true" loop="true">
+<source type="video/mp4" src="gatsbygram.mp4">
+</source>
+<p>
+Your browser does not support the video element.
+</p>
+</video>
+<h3 id="embedding-audio">Embedding Audio</h3>
+<p>HTML audio tag with <code>source</code> and a fallback paragraph (MP3 via <a href="https://www.doria.fi/handle/10024/72376">doria.fi</a>, public domain):</p>
+<audio controls="controls">
+<source type="audio/mp3" src="RAI-GramophoneGC-82979-01-1-001.mp3">
+</source>
+<p>
+Your browser does not support the audio element.
+</p>
+</audio>
+<h2 id="gatsby-config.js">gatsby-config.js</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">resolve</span><span class="op">:</span> <span class="vs">`gatsby-transformer-remark`</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">options</span><span class="op">:</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">resolve</span><span class="op">:</span> <span class="vs">`gatsby-remark-responsive-iframe`</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">options</span><span class="op">:</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>          <span class="dt">wrapperStyle</span><span class="op">:</span> <span class="vs">`margin-bottom: 1.0725rem`</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;gatsby-remark-prismjs&#39;</span><span class="op">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">resolve</span><span class="op">:</span> <span class="st">&#39;gatsby-remark-copy-linked-files&#39;</span><span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">options</span><span class="op">:</span> {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>          <span class="co">// `ignoreFileExtensions` defaults to [`png`, `jpg`, `jpeg`, `bmp`, `tiff`]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>          <span class="co">// as we assume you&#39;ll use gatsby-remark-images to handle</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>          <span class="co">// images in markdown as it automatically creates responsive</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          <span class="co">// versions of images.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          <span class="co">//</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>          <span class="co">// If you&#39;d like to not use gatsby-remark-images and just copy your</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          <span class="co">// original images to the public directory, set</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="co">// `ignoreFileExtensions` to an empty array.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>          <span class="dt">ignoreFileExtensions</span><span class="op">:</span> []<span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;gatsby-remark-smartypants&#39;</span><span class="op">,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">,</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span></code></pre></div>
+</body>
+</html>

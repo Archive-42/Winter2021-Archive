@@ -1,0 +1,18 @@
+﻿Suppose you're given a binarytree represented as an array.
+For example, [3, 6, 2,g, -1, 18] represents the following
+binary tree (where -1 is a non-existent node):
+6
+9
+3
+2
+10
+Write a function that determines whether the left or right
+branch of the tree is larger. The size of each branch is the
+sum of the node values. The function should return the
+string "Right" ifthe right side is larger and " Left" ifthe
+left side is larger. Ifthe tree has e nodes or if the size of the
+branches are equal, return the empty string.
+Example Input:
+-1,1e]
+Example Output:
+Left

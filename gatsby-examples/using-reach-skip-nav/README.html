@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="skip-navigation">Skip Navigation</h1>
+<p>Many people navigate the web primarily using the keyboard, often with a screen reader. If main content is not the first thing on a page (e.g. if there is a top site banner or navigation menu before the main content starts), these users have to tab through every single link before they can get to the main content. As this is cumbersome and not an ideal user experience, it is recommended that a “skip link” be added at the very top of every page that links to the main content, allowing users to skip right to the most relevant information on the page. It is idiomatic to position this link off of the page so it can only be reached with a keyboard and doesn’t interrupt visual flow of the page, and to display the link if it is focused.</p>
+<p>Additionally, many users (e.g. low vision users who view pages at a high magnification) have difficulty orienting themselves on a new page if focus is set on too large of an element or an inoperable element, like the wrapper div that Gatsby focuses by default. Sending focus directly to a smaller, interactive control like the skip link is ideal, as laid out in <a href="https://www.gatsbyjs.com/blog/2019-07-11-user-testing-accessible-client-routing/">research</a> conducted by <span class="citation" data-cites="marcysutton">[@marcysutton]</span>(www.github.com/marcysutton) and <a href="https://www.makeitfable.com/">Fable Tech Labs</a>.</p>
+<p>This example will show you how to leverage the <span class="citation" data-cites="reach/skip-nav">[@reach/skip-nav]</span>(https://reacttraining.com/reach-ui/skip-nav/) component to implement a skip link and also how to focus that link on navigation to a new page in your <code>gatsby-browser.js</code> file.</p>
+<h2 id="using-reachskip-nav">Using <span class="citation" data-cites="reach/skip-nav">@reach/skip-nav</span></h2>
+<h3 id="add-skipnavlink-and-skipnavcontent-to-your-layout">Add <code>SkipNavLink</code> and <code>SkipNavContent</code> to your Layout</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript:title=src/components/layout.js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// src/components/layout.js</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { SkipNavLink<span class="op">,</span> SkipNavContent } <span class="im">from</span> <span class="st">&quot;@reach/skip-nav&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&quot;@reach/skip-nav/styles.css&quot;</span> <span class="co">//this will show/hide the link on focus</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> Layout <span class="op">=</span> ({ children }) <span class="kw">=&gt;</span> (</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>SkipNavLink <span class="op">/&gt;</span> <span class="co">//put the link at the very top of your page</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>Navigation <span class="op">/&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>Header <span class="op">/&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>SkipNavContent <span class="op">/&gt;</span> <span class="co">//the link will go to here, so put it right before main content</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>main<span class="op">&gt;</span>{children}<span class="op">&lt;/</span>main<span class="op">&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>Footer <span class="op">/&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;/&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> Layout</span></code></pre></div>
+<h3 id="focus-your-link-on-page-navigation">Focus your link on page navigation</h3>
+<p>Hooking into Gatsby’s <code>onRouteUpdate</code> API method will allow you to focus automatically on a skip link on page change, putting a user in a more appropriate spot to take action. More information about this method can be found the <a href="https://www.gatsbyjs.com/docs/browser-apis/#onRouteUpdate">browser API docs</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript:title=gatsby-browser.js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// gatsby-browser.js</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> onRouteUpdate <span class="op">=</span> ({ location<span class="op">,</span> prevLocation }) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (prevLocation <span class="op">!==</span> <span class="kw">null</span>) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> skipLink <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">&quot;[data-reach-skip-link]&quot;</span>) <span class="co">//this is the query selector that comes with the &lt;SkipNavLink&gt; component</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (skipLink) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      skipLink<span class="op">.</span><span class="fu">focus</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="using-this-example">🚀 Using this example</h2>
+<h3 id="whats-inside">🧐 What’s inside?</h3>
+<p>A quick look at the relevant files and directories you’ll see in this example:</p>
+<pre class="text"><code>    .
+    ├── cypress/
+    │   ├── integration/
+    │   │   ├── skip-nav.test.js
+    ├── src/
+    │   ├── components/
+    │   │   ├── header.css
+    │   │   ├── header.js
+    │   │   ├── layout.js
+    │   │   └── seo.js
+    │   └── pages/
+    ├── gatsby-browser.js</code></pre>
+<ol type="1">
+<li><p><strong><code>/src</code></strong>: This directory will contain all of the code related to what you will see on the front-end of your site. It has pages and components to be used in those pages.</p></li>
+<li><p><strong><code>/components</code></strong>: This directory will contain all of the code related to what you will see on the front-end of your site. It has pages and components to be used in those pages.</p>
+<ol type="1">
+<li><strong><code>/header.css</code></strong>: This ensures that our navigation links have focus rings, which are important visual cues when navigating by keyboard.</li>
+<li><strong><code>/header.js</code></strong>: This has the navigation links for your pages.</li>
+<li><strong><code>/layout.js</code></strong>: This component is used in all of your pages to make sure they all use the same navigation. This is also where you will implement your skip link.</li>
+<li><strong><code>/seo.js</code></strong>: This information is necessary to give the site a 100% in <a href="https://developers.google.com/web/tools/lighthouse">Lighthouse</a> for accessibility since screen readers need a title and language.</li>
+</ol></li>
+<li><p><strong><code>/pages</code></strong>: This directory contains pages that will be automatically built and served by Gatsby. This example includes three pages to demonstrate navigation between them and how your skip nav link behaves. All of these pages use the <code>Layout</code> component.</p></li>
+<li><p><strong><code>gatsby-browser.js</code></strong>: This file is where you tell the Gatsby to focus the skip navigation when users navigate to a new page.</p></li>
+<li><p><strong><code>/cypress</code></strong>: This directory is where tests and <a href="https://www.cypress.io/">Cypress</a> configuration live. You’re going to focus on the test. If you want to learn more about using Cypress, check out the <a href="https://github.com/gatsbyjs/gatsby/tree/master/examples/using-cypress">example</a>.</p></li>
+<li><p><strong><code>/integrations/skip-nav.test.js</code></strong>: runs two tests to ensure that you have a skip link and that the skip link is focused on page navigation.</p></li>
+</ol>
+<h3 id="running-the-example">Running the example</h3>
+<ol type="1">
+<li><p>Use the CLI to create run this example</p>
+<pre class="shell"><code>gatsby develop</code></pre></li>
+<li><p>Your site is now running at <code>http://localhost:8000</code>!</p></li>
+<li><p>Press <code>tab</code> and you’ll see the skip link!</p></li>
+<li><p>If you press <code>enter</code> and then <code>tab</code> again you’ll see that you skipped over the rest of the navigation and are in the main content!</p></li>
+</ol>
+<h3 id="running-tests">Running tests</h3>
+<ol type="1">
+<li><p>Use the CLI to run Cypress tests</p>
+<pre class="shell"><code>npm run test:e2e</code></pre></li>
+<li><p>this will pop open a window with your tests</p></li>
+<li><p>click “Run all specs” in that window</p></li>
+</ol>
+</body>
+</html>

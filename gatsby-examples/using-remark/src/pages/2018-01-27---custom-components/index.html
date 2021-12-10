@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Jay Gatsby" />
+  <meta name="dcterms.date" content="2018-01-27" />
+  <title>Custom components</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Custom components</h1>
+<p class="author">Jay Gatsby</p>
+<p class="date">2018-01-27</p>
+</header>
+<p>What if you want custom UI interactions embedded in your Markdown?</p>
+<p>By using <code>rehype-react</code> with the <code>htmlAst</code> field, you can write custom React components and then reference them from your Markdown files, or map generic HTML elements like <code>&lt;ul&gt;</code> or <code>&lt;h2&gt;</code> to your own components.</p>
+<p><em>Note: this functionality was added in version 1.7.31 of gatsby-transformer-remark</em></p>
+<h2 id="writing-a-component">Writing a component</h2>
+<p>Write the component the way you normally would. For example, here’s a simple “Counter” component:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> counterStyle <span class="op">=</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* styles skipped for brevity */</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">class</span> Counter <span class="kw">extends</span> React<span class="op">.</span><span class="at">Component</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">static</span> defaultProps <span class="op">=</span> {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">initialvalue</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  state <span class="op">=</span> {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="bu">Number</span>(<span class="kw">this</span><span class="op">.</span><span class="at">props</span><span class="op">.</span><span class="at">initialvalue</span>)<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  handleIncrement <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="fu">setState</span>(state <span class="kw">=&gt;</span> {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">value</span><span class="op">:</span> state<span class="op">.</span><span class="at">value</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  handleDecrement <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="fu">setState</span>(state <span class="kw">=&gt;</span> {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">value</span><span class="op">:</span> state<span class="op">.</span><span class="at">value</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">render</span>() {</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;</span>span style<span class="op">=</span>{counterStyle}<span class="op">&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>strong style<span class="op">=</span>{{ <span class="dt">flex</span><span class="op">:</span> <span class="vs">`1 1`</span> }}<span class="op">&gt;</span>{<span class="kw">this</span><span class="op">.</span><span class="at">state</span><span class="op">.</span><span class="at">value</span>}<span class="op">&lt;/</span>strong<span class="op">&gt;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>button onClick<span class="op">=</span>{<span class="kw">this</span><span class="op">.</span><span class="at">handleDecrement</span>}<span class="op">&gt;-</span><span class="dv">1</span><span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>button onClick<span class="op">=</span>{<span class="kw">this</span><span class="op">.</span><span class="at">handleIncrement</span>}<span class="op">&gt;+</span><span class="dv">1</span><span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;/</span>span<span class="op">&gt;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="enabling-the-component">Enabling the component</h2>
+<p>In order to display this component within a Markdown file, you’ll need to add a reference to the component in the template that renders your Markdown content. There are five parts to this:</p>
+<ol type="1">
+<li><p>Install <code>rehype-react</code> and <code>unified</code> as a dependency</p>
+<pre class="shell"><code>npm install rehype-react unified</code></pre></li>
+<li><p>Import <code>rehype-react</code> &amp; <code>unified</code> and whichever components you wish to use</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createElement } <span class="im">from</span> <span class="st">&quot;react&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rehypeReact <span class="im">from</span> <span class="st">&quot;rehype-react&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unified <span class="im">from</span> <span class="st">&quot;unified&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Counter <span class="im">from</span> <span class="st">&quot;../components/Counter&quot;</span></span></code></pre></div></li>
+<li><p>Create a render function with references to your custom components</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> processor <span class="op">=</span> <span class="fu">unified</span>()<span class="op">.</span><span class="fu">use</span>(rehypeReact<span class="op">,</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  createElement<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">components</span><span class="op">:</span> {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;interactive-counter&quot;</span><span class="op">:</span> Counter<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> renderAst <span class="op">=</span> ast <span class="kw">=&gt;</span> {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> processor<span class="op">.</span><span class="fu">stringify</span>(ast)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If you use TypeScript:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>const processor <span class="op">=</span> <span class="fu">unified</span>()<span class="op">.</span><span class="fu">use</span>(rehypeReact<span class="op">,</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  createElement<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  components<span class="op">:</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;interactive-counter&quot;</span><span class="op">:</span> Counter<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>export const renderAst <span class="op">=</span> (ast<span class="op">:</span> <span class="dt">any</span>)<span class="op">:</span> JSX<span class="op">.</span><span class="at">Element</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  return processor<span class="op">.</span><span class="fu">stringify</span>(ast) <span class="im">as</span> <span class="dt">unknown</span> <span class="im">as</span> JSX<span class="op">.</span><span class="at">Element</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>I prefer to use hyphenated names to make it clear that it’s a custom component.</p></li>
+<li><p>Render your content using <code>htmlAst</code> instead of <code>html</code></p>
+<p>This will look different depending on how you were previously referring to the post object retrieved from GraphQL, but in general you’ll want to replace this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>div dangerouslySetInnerHTML<span class="op">=</span>{{ <span class="dt">__html</span><span class="op">:</span> post<span class="op">.</span><span class="at">html</span> }} <span class="op">/&gt;</span></span></code></pre></div>
+<p>with this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">renderAst</span>(post<span class="op">.</span><span class="at">htmlAst</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+<li><p>Change <code>html</code> to <code>htmlAst</code> in your <code>pageQuery</code></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode graphql"><code class="sourceCode graphql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>markdownRemark(fields: { slug: { eq: <span class="va">$slug</span> } }) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  htmlAst <span class="co"># previously `html`</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># other fields...</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code></pre></div></li>
+</ol>
+<h2 id="using-the-component">Using the component</h2>
+<p>Now, you can directly use your custom component within your Markdown files! For instance, if you include the tag:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;interactive-counter&gt;&lt;/interactive-counter&gt;</span></span></code></pre></div>
+<p>You’ll end up with an interactive component:</p>
+<p><interactive-counter></interactive-counter></p>
+<p>In addition, you can also pass attributes, which can be used as props in your component:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;interactive-counter</span> <span class="er">initialvalue</span><span class="ot">=</span><span class="st">&quot;10&quot;</span><span class="kw">&gt;&lt;/interactive-counter&gt;</span></span></code></pre></div>
+<p><interactive-counter initialvalue="10"></interactive-counter></p>
+<h2 id="mapping-from-generic-html-elements">Mapping from generic HTML elements</h2>
+<p>You can also map a generic HTML element to one of your own components. This can be particularly useful if you are using something like styled-components as it allows you to share these primitives between markdown content and the rest of your site. It also means the author of the Markdown doesn’t need to use any custom markup - just standard markdown.</p>
+<p>For example if you have a series of header components:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> PrimaryTitle <span class="op">=</span> styled<span class="op">.</span><span class="fu">h1</span><span class="vs">`…`</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> SecondaryTitle <span class="op">=</span> styled<span class="op">.</span><span class="fu">h2</span><span class="vs">`…`</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> TertiaryTitle <span class="op">=</span> styled<span class="op">.</span><span class="fu">h3</span><span class="vs">`…`</span></span></code></pre></div>
+<p>You can map headers defined in markdown to these components:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> renderAst <span class="op">=</span> <span class="kw">new</span> <span class="fu">rehypeReact</span>({</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">createElement</span><span class="op">:</span> React<span class="op">.</span><span class="at">createElement</span><span class="op">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">components</span><span class="op">:</span> {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">h1</span><span class="op">:</span> PrimaryTitle<span class="op">,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">h2</span><span class="op">:</span> SecondaryTitle<span class="op">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">h3</span><span class="op">:</span> TertiaryTitle<span class="op">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="at">Compiler</span></span></code></pre></div>
+<p>And headers defined in markdown will be rendered as your components instead of generic HTML elements:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># This will be rendered as a PrimaryTitle component</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## This will be rendered as a SecondaryTitle component</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### This will be rendered as a TertiaryTitle component</span></span></code></pre></div>
+<h2 id="caveats">Caveats</h2>
+<p>Although it looks like we’re now using React components in our Markdown files, that’s not <em>entirely</em> true: we’re adding custom HTML elements which are then replaced by React components. This means there are a few things to watch out for.</p>
+<h3 id="always-add-closing-tags">Always add closing tags</h3>
+<p>JSX allows us to write self-closing tags, such as <code>&lt;my-component /&gt;</code>. However, the HTML parser would incorrectly interpret this as an opening tag, and be unable to find a closing tag. For this reason, tags written in Markdown files always need to be explicitly closed, even when empty:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;my-component&gt;&lt;/my-component&gt;</span></span></code></pre></div>
+<h3 id="attribute-names-are-always-lowercased">Attribute names are always lowercased</h3>
+<p>HTML attribute names are not case-sensitive. <code>gatsby-transformer-remark</code> handles this by lowercasing all attribute names; this means that any props on an exposed component must also be all-lowercase.</p>
+<blockquote>
+<p>The prop in the <code>Counter</code> example above was named <code>initialvalue</code> rather than <code>initialValue</code> for exactly this reason; if we tried to access <code>this.props.initialValue</code> we’d have found it to be <code>undefined</code>.</p>
+</blockquote>
+<h3 id="attributes-are-always-strings">Attributes are always strings</h3>
+<p>Any prop that gets its value from an attribute will always receive a string value. Your component is responsible for properly deserializing passed values.</p>
+<ul>
+<li>Numbers are always passed as strings, even if the attribute is written without quotes: <code>&lt;my-component value=37&gt;&lt;/my-component&gt;</code> will still receive the string <code>"37"</code> as its value instead of the number <code>37</code>.</li>
+<li>React lets you pass a prop without a value, and will interpret it to mean <code>true</code>; for example, if you write <code>&lt;MyComponent isEnabled /&gt;</code> then the props would be <code>{ isEnabled: true }</code>. However, in your Markdown, an attribute without a value will not be interpreted as <code>true</code>; instead, it will be passed as the empty string <code>""</code>. Similarly, passing <code>somevalue=true</code> and <code>othervalue=false</code> will result in the string values <code>"true"</code> and <code>"false"</code>, respectively.</li>
+<li>You can pass object values if you use <code>JSON.parse()</code> in your component to get the value out; just remember to enclose the value in single quotes to ensure it is parsed correctly (e.g. <code>&lt;my-thing objectvalue='{"foo": "bar"}'&gt;&lt;/my-thing&gt;</code>).</li>
+</ul>
+<blockquote>
+<p>Notice in the <code>Counter</code> example how the initial <code>value</code> has been cast using the <code>Number()</code> function.</p>
+</blockquote>
+<h2 id="possibilities">Possibilities</h2>
+<p>Custom components embedded in Markdown enables many features that weren’t possible before; here are some ideas, starting simple and getting complex:</p>
+<ul>
+<li>Write a live countdown clock for an event such as Christmas, the Super Bowl, or someone’s birthday. Suggested markup: <code>&lt;countdown-clock&gt; 2019-01-02T05:00:00.000Z &lt;/countdown-clock&gt;</code></li>
+<li>Write a component that displays as a link with an informative hovercard. For example, you might want to write <code>&lt;hover-card subject="ostrich"&gt; ostriches &lt;/hover-card&gt;</code> to show a link that lets you hover to get information on ostriches.</li>
+<li>If your Gatsby site is for vacation photos, you might write a component that allows you to show a carousel of pictures, and perhaps a map that shows where each photo was taken.</li>
+<li>Write a component that lets you add live code demos in your Markdown, using <a href="https://formidable.com/open-source/component-playground/">component-playground</a> or something similar.</li>
+<li>Write a component that wraps a <a href="/hello-world-kitchen-sink/#tables">GFM table</a> and displays the data from the table in an interactive graph.</li>
+</ul>
+</body>
+</html>
