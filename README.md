@@ -3,6 +3,6 @@
 git init
 git add .
 git commit -m"update"
-git push -u origin master -f
+git push -u origin master 
 
 
