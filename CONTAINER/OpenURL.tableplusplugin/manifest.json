@@ -1,0 +1,20 @@
+{
+    "name": "Open URL Plugin",
+    "identifier": "com.tinyapp.TablePlus.OpenURL",
+    "version": "1.0",
+    "detail": "This plugin helps you open an Url/email on cell",
+    "author": "TablePlus",
+    "authorEmail": "support@tableplus.io",
+    "scripts": [
+        {
+            "location": "data",
+            "type": "separator"
+        },
+        {
+            "location": "data",
+            "type": "action",
+            "script": "openURL.js",
+            "name": "Go to URL"
+        }
+    ]
+}
