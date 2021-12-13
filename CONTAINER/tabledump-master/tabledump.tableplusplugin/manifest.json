@@ -1,0 +1,49 @@
+{
+    "name": "Dump Table",
+    "identifier": "com.tinyapp.TablePlus.TableDump",
+    "version": "1.3",
+    "detail": "Dump table structure",
+    "author": "TablePlus",
+    "site": "https://github.com/TablePlus/tabledump",
+    "email": "nick@tableplus.com",
+    "scripts": [
+        {
+            "location": "item",
+            "type": "separator"
+        },
+        {
+            "name": "Copy Script As",
+            "location": "item",
+            "type": "submenu",
+            "children": [
+                {
+                    "type": "action",
+                    "script": "dumpcreation.js",
+                    "handler": "creation",
+                    "name": "CREATION"
+                },
+                {
+                    "type": "action",
+                    "script": "dumpcreation.js",
+                    "handler": "drop",
+                    "name": "DROP"
+                },
+                {
+                    "type": "action",
+                    "script": "dumpcreation.js",
+                    "handler": "truncate",
+                    "name": "TRUNCATE"
+                },
+                {
+                    "type": "separator"
+                },
+                {
+                    "type": "action",
+                    "script": "dumpcreation.js",
+                    "handler": "laravel",
+                    "name": "Laravel Migration"
+                }
+            ]
+        }
+    ]
+}
